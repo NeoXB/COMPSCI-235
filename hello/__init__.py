@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for, request
 from markupsafe import escape
 
 
@@ -8,7 +8,7 @@ def create_app():
 
     @app.route('/')
     def index():
-        return 'Index page'
+        return url_for('index')
 
     @app.route('/hello')
     def hello():
@@ -32,5 +32,10 @@ def create_app():
     @app.route('/news', methods=['GET'])
     def shows_news():
         return "Today’s news is ..."
+
+    @app.route('/greet')
+    def say_hello_two():
+        name = request.args['name']
+        return 'Hello ' + name
 
     return app
