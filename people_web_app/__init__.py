@@ -19,7 +19,7 @@ def create_app():
     )
 
     with app.app_context():
-        from .people import people
+        from .people_blueprint import people
         app.register_blueprint(people.people_blueprint)
 
     return app
